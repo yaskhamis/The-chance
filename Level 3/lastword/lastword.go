@@ -1,23 +1,20 @@
 package piscine
 
 func LastWord(s string) string {
-	arr := []rune(s)
-	char := ""
-	for i := len(arr)-1; i >= 0 ; i-- {
-		if arr[i] != ' ' || arr[len(arr)-1] == ' '{
-			char += string(arr[i])
-		} else {
+	end := -1
+	
+	for i := len(s) - 1; i >= 0; i-- {
+		if s[i] != ' ' {
+			end = i
 			break
 		}
 	}
-	
-	fil := []rune(char)
-	jh := ""
-	for j := len(fil)-1; j >= 0 ; j-- {
-		if fil[j] != ' '{
-			jh += string(fil[j])
-		}
+	if end == -1 {
+		return "\n"
 	}
-	
-	return jh + "\n"
+	start := end
+	for start >= 0 && s[start] != ' ' {
+		start--
+	}
+	return s[start+1:end+1] + "\n"
 }
