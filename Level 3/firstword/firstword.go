@@ -2,6 +2,7 @@ package piscine
 
 func FirstWord(s string) string {
 	start := -1
+	
 	for i, c := range s {
 		if c != ' ' {
 			start = i
