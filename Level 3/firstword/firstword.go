@@ -1,15 +1,19 @@
 package piscine
 
 func FirstWord(s string) string {
-	arr := []rune(s)
-	char := ""
-	for i := 0; i < len(arr); i++ {
-		if arr[i] != ' ' {
-			char += string(arr[i])
-		} else {
+	start := -1
+	for i, c := range s {
+		if c != ' ' {
+			start = i
 			break
 		}
 	}
-	
-	return char + "\n"
+	if start == -1 {
+		return "\n"
+	}
+	end := start
+	for end < len(s) && s[end] != ' ' {
+		end++
+	}
+	return s[start:end] + "\n"
 }
