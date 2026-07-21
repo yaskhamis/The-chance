@@ -1,43 +1,28 @@
-package main
+package piscine
 
-import (
-	"fmt"
-	"strconv"
-)
-
-func main() {
-	fmt.Print(FromTo(1, 10))
-	fmt.Print(FromTo(2, 1))
-	// fmt.Print(FromTo(2, 2))
-	// fmt.Print(FromTo(100, 10))
-}
+import "strconv"
 
 func FromTo(from int, to int) string {
 	if from > 99 || from < 0 || to > 99 || to < 0 {
-		return "Invalid" + "\n"
+		return "Invalid\n"
 	}
-	result := ""
+	step := 1
 	if from > to {
-		for i := from ; i >= to ; i-- {
-			if i < 10 {
-				if i != to {
-					result += "0" + strconv.Itoa(i) + ", "
-				} else {
-					result += "0" + strconv.Itoa(i) + "\n"
-				} 
-			} else if i >= 10 {
-				if i != to {
-					result += strconv.Itoa(i) + ", "
-				} else {
-					result += strconv.Itoa(i) + "\n"
-				}
-			}
-		}
-	} else if from < to {
-
-	} else  {
-
+		step = -1
 	}
-	return result
+	res := ""
+	for i := from; ; i += step {
+		s := strconv.Itoa(i)
+		if i < 10 {
+			s = "0" + s
+		}
+		if res != "" {
+			res += ", "
+		}
+		res += s
+		if i == to {
+			break
+		}
+	}
+	return res + "\n"
 }
-
