@@ -2,8 +2,13 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
+
+func main() {
+	fmt.Println(ZipString("YouuungFellllas"))
+	fmt.Println(ZipString("Thee quuick browwn fox juumps over the laaazy dog"))
+	fmt.Println(ZipString("Helloo Therre!"))
+}
 
 func ZipString(s string) string {
 	if s == "" {
@@ -17,7 +22,7 @@ func ZipString(s string) string {
 		if i < len(s) && s[i] == s[i-1] {
 			count++
 		} else {
-			result += strconv.Itoa(count)
+			result += itoa(count)
 			result += string(s[i-1])
 			count = 1
 		}
@@ -26,8 +31,12 @@ func ZipString(s string) string {
 	return result
 }
 
-func main() {
-	fmt.Println(ZipString("YouuungFellllas"))
-	fmt.Println(ZipString("Thee quuick browwn fox juumps over the laaazy dog"))
-	fmt.Println(ZipString("Helloo Therre!"))
+func itoa(n int) string {
+	result := ""
+	for n > 0 {
+		digit := n % 10
+		result += string(rune(digit + '0'))
+		n /= 10
+	}
+	return result
 }
